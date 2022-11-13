@@ -1,0 +1,43 @@
+<div class="container">
+  <br>
+  <h4><mark>{{order.name}}</mark></h4>
+  <div class="alert alert-secondary">
+    Description: <p>{{order.description}}</p>
+  </div>
+  <div class="alert alert-success">
+    <p>Price: {{order.price}} $ </p>
+    Amount: {{order.amount}}
+  </div>
+
+  <h5>Edit product:</h5>
+  <button class="btn btn-danger" (click)="editProduct()">Edit product</button>
+  <div><br></div>
+  <form *ngIf="isEdit">
+    <input type="text" placeholder="Product name" class="form-control" [(ngModel)]="order.name" name = "name"><br>
+    <input type="text" placeholder="Product description" class="form-control" [(ngModel)]="order.description" name = 'description'><br>
+    <input type="number" placeholder="Product price" class="form-control" [(ngModel)]="order.price" name = "price"><br>
+    <input type="number" placeholder="Product amount" class="form-control" [(ngModel)]="order.amount" name = "amount"><br>
+  </form>
+
+
+  <h5>Send feedback:</h5>
+  <form (submit)="sendFeedback(feedback.value)">
+    <div class="form-group">
+      <label for="option">Enter text below</label>
+      <input type="text" id="option" placeholder="Text here..." class="form-control" #feedback>
+      <br>
+      <button type="submit" class="btn btn-outline-success">Send message</button>
+      <br><br>
+    </div>
+  </form>
+
+  <div class="alert alert-primary">
+    Check categories:
+    <ul>
+      <li *ngFor="let cat of categories"> {{cat}}</li>
+    </ul>
+  </div>
+
+  <h5>Other products</h5>
+  <button class="btn btn-info" (click)="selectProd(p.toString())" *ngFor="let p of otherProducts">{{p}}</button>
+</div>
